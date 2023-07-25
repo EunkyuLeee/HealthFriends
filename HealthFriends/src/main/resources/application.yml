@@ -1,5 +1,5 @@
 springdoc:
-  packages-to-scan: com.example.Domabam
+  packages-to-scan: com.example.HealthFriends
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
   swagger-ui:
@@ -7,3 +7,18 @@ springdoc:
     disable-swagger-default-url: true
     display-request-duration: true
     operations-sorter: alpha
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database.c3bzji4stk5z.ap-northeast-2.rds.amazonaws.com:3306/hfdb?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: admin
+    password: star5008
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
