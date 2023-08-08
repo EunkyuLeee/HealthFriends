@@ -1,18 +1,18 @@
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import {MD2Colors as Colors} from 'react-native-paper'
-import {TopBar} from './src/components/TopBar';
+import React from 'react';;
+import { SafeAreaView, Text, View } from 'react-native';
 import * as Data from './src/data';
+import StartScreen from './src/screens/start_screen';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigator from './src/components/Navigator';
 
-export const User = Data.createUserInfo()
+
 
 function App(): JSX.Element {
 
   return (
-    <SafeAreaView>
-      <TopBar icon_name = 'menu' page_name='HF' User={User} needUser={true}/>
-    </SafeAreaView>
+    <NavigationContainer>
+        <Navigator/>
+    </NavigationContainer>
   );
 }
 

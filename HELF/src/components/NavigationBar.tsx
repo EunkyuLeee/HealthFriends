@@ -4,14 +4,14 @@ import {MD2Colors as Colors} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Data from '../data'
 
-export type topBarProps = {
+export type NavigationBarProps = {
     icon_name: string
     page_name: string
     User : Data.UserInfo
     needUser: boolean
 }
 
-export const TopBar : FC<topBarProps> = ({icon_name, User, page_name, needUser}) => {
+export const NavigationBar : FC<NavigationBarProps> = ({icon_name, User, page_name, needUser}) => {
 
     return (
         <View style={[styles.topbar]}>

@@ -1,6 +1,5 @@
 import type {UserInfo} from './UserInfo'
 import * as Faker from './Random'
-import * as Util from './util'
 
 export const createUserInfo = (): UserInfo => {
     const name = Faker.randomName()

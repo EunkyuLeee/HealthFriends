@@ -14,6 +14,10 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-HELF-HELFTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-HELF-HELFTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		369E823BE43F4911AB7FD978 /* SEBANG Gothic OTF Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E4335F7061D24DA0A8E20F30 /* SEBANG Gothic OTF Bold.otf */; };
+		72CD2920AC0D467385F556D5 /* SEBANG Gothic OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 531DD6B1CB754FE6A85AF7A5 /* SEBANG Gothic OTF.otf */; };
+		D785DC8020AD42089A649346 /* SEBANG_Gothic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BDC4F42D7D54EB6A705AD23 /* SEBANG_Gothic.ttf */; };
+		32BBFBC035374C66816E00D6 /* SEBANG_Gothic_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6B1E61015D624848B0073D31 /* SEBANG_Gothic_Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HELF/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-HELF-HELFTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HELF-HELFTests.release.xcconfig"; path = "Target Support Files/Pods-HELF-HELFTests/Pods-HELF-HELFTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		E4335F7061D24DA0A8E20F30 /* SEBANG Gothic OTF Bold.otf */ = {isa = PBXFileReference; name = "SEBANG Gothic OTF Bold.otf"; path = "../src/assets/fonts/SEBANG Gothic OTF Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		531DD6B1CB754FE6A85AF7A5 /* SEBANG Gothic OTF.otf */ = {isa = PBXFileReference; name = "SEBANG Gothic OTF.otf"; path = "../src/assets/fonts/SEBANG Gothic OTF.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9BDC4F42D7D54EB6A705AD23 /* SEBANG_Gothic.ttf */ = {isa = PBXFileReference; name = "SEBANG_Gothic.ttf"; path = "../src/assets/fonts/SEBANG_Gothic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6B1E61015D624848B0073D31 /* SEBANG_Gothic_Bold.ttf */ = {isa = PBXFileReference; name = "SEBANG_Gothic_Bold.ttf"; path = "../src/assets/fonts/SEBANG_Gothic_Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				71B6C3F43B1B428ABCD195B7 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +156,18 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		71B6C3F43B1B428ABCD195B7 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				E4335F7061D24DA0A8E20F30 /* SEBANG Gothic OTF Bold.otf */,
+				531DD6B1CB754FE6A85AF7A5 /* SEBANG Gothic OTF.otf */,
+				9BDC4F42D7D54EB6A705AD23 /* SEBANG_Gothic.ttf */,
+				6B1E61015D624848B0073D31 /* SEBANG_Gothic_Bold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +265,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				369E823BE43F4911AB7FD978 /* SEBANG Gothic OTF Bold.otf in Resources */,
+				72CD2920AC0D467385F556D5 /* SEBANG Gothic OTF.otf in Resources */,
+				D785DC8020AD42089A649346 /* SEBANG_Gothic.ttf in Resources */,
+				32BBFBC035374C66816E00D6 /* SEBANG_Gothic_Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
