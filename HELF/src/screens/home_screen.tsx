@@ -11,10 +11,10 @@ export default function HomeScreen({navigation}) {
             <Text style={styles.text}>{today}</Text>
             <Text style={styles.text}>홈 화면입니다.</Text>
             <TouchableOpacity>
-                <Text style={styles.button} onPress={() => {navigation.navigate('Home')}}>운동 기록 화면으로</Text>
+                <Text style={styles.button} onPress={() => {navigation.navigate('운동 기록')}}>운동 기록 화면으로</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={styles.button} onPress={() => {navigation.navigate('Home')}}>운동 기록 조회 화면으로</Text>
+                <Text style={styles.button} onPress={() => {navigation.navigate('운동 조회')}}>운동 기록 조회 화면으로</Text>
             </TouchableOpacity>
         </View>
     )

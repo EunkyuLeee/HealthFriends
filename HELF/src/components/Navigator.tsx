@@ -6,6 +6,9 @@ import HomeScreen from '../screens/home_screen';
 import * as Data from '../data';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { MD2Colors as Colors } from 'react-native-paper';
+import ExerciseScreen from '../screens/exercise_screen';
+import ExerciseList from '../screens/exercise_list';
+import ExerciseStart from '../screens/exercise_start';
 
 export const User = Data.createUserInfo()
 const Stack = createStackNavigator()
@@ -25,6 +28,54 @@ export default function Navigator(){
                     <View>
                         <Image style={styles.image} source={{uri : User.profileImage}}/>
                     </View>
+                ),
+                headerTintColor: '#ffffff',
+                headerStyle: { 
+                    backgroundColor: Colors.blue400,
+                },
+                headerTitleStyle: {
+                    fontFamily: 'SEBANG_Gothic_Bold',
+                    fontSize: 20,
+                },
+                headerTitleAlign: 'center'
+            }}/>
+            <Stack.Screen name='운동 기록' component={ExerciseScreen} options={{
+                headerLeft: ({onPress}) => (
+                    <TouchableOpacity onPress={() => {onPress}}>
+                        <Icon style={styles.icon} name='arrow-left' size={25} color={Colors.white}/>
+                    </TouchableOpacity>
+                ),
+                headerTintColor: '#ffffff',
+                headerStyle: { 
+                    backgroundColor: Colors.blue400,
+                },
+                headerTitleStyle: {
+                    fontFamily: 'SEBANG_Gothic_Bold',
+                    fontSize: 20,
+                },
+                headerTitleAlign: 'center'
+            }}/>
+            <Stack.Screen name='운동 조회' component={ExerciseList} options={{
+                headerLeft: ({onPress}) => (
+                    <TouchableOpacity onPress={() => {onPress}}>
+                        <Icon style={styles.icon} name='arrow-left' size={25} color={Colors.white}/>
+                    </TouchableOpacity>
+                ),
+                headerTintColor: '#ffffff',
+                headerStyle: { 
+                    backgroundColor: Colors.blue400,
+                },
+                headerTitleStyle: {
+                    fontFamily: 'SEBANG_Gothic_Bold',
+                    fontSize: 20,
+                },
+                headerTitleAlign: 'center'
+            }}/>
+            <Stack.Screen name='운동 기록하기' component={ExerciseStart} options={{
+                headerLeft: ({onPress}) => (
+                    <TouchableOpacity onPress={() => {onPress}}>
+                        <Icon style={styles.icon} name='arrow-left' size={25} color={Colors.white}/>
+                    </TouchableOpacity>
                 ),
                 headerTintColor: '#ffffff',
                 headerStyle: { 
