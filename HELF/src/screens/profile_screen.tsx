@@ -1,15 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import { currentDate } from '../data';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import { MD2Colors as Colors } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Picker } from '@react-native-picker/picker';
-import RNPickerSelect from 'react-native-picker-select';
 
-const today = currentDate()
-
-export default function ExerciseList({navigation} : any) {
+export default function Profile({navigation} : any) {
     return (
         <View style={styles.view}>
             <View style={styles.head}>

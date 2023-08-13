@@ -5,7 +5,7 @@ import { MD2Colors as Colors } from 'react-native-paper';
 
 const today = currentDate()
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({navigation} : any) {
     return (
         <View style={styles.view}>
             <Text style={styles.text}>{today}</Text>

@@ -9,7 +9,7 @@ import RNPickerSelect from 'react-native-picker-select';
 
 const today = currentDate()
 
-export default function ExerciseScreen({navigation}) {
+export default function ExerciseScreen({navigation} : any) {
     return (
         <View style={styles.view}>
             <Icon name='dumbbell' size={200} color={Colors.blue900}/>

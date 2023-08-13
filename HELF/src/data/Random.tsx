@@ -10,3 +10,5 @@ export const randomAvatarUrl = (name?: string): string =>
 export const randomDate = (): Date => faker.date.recent()
 export const randomImage = (): string =>
   Util.unsplashUrl(Util.random(800, 1000), Util.random(800, 1000))
+export const randomNumber = (): string =>
+  faker.commerce.price()

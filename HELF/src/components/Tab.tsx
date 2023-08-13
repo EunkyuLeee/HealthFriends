@@ -11,7 +11,7 @@ export default function Tabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Timer" component={Timer} />
-      <Tab.Screen name="Record" component={Input} />
+      <Tab.Screen name="Input" component={Input} />
     </Tab.Navigator>
   );
 }
