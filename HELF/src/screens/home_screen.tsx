@@ -8,6 +8,7 @@ const today = currentDate()
 export default function HomeScreen({navigation} : any) {
     return (
         <ScrollView style={styles.view}>
+            
             <Text style={styles.text}>{today}</Text>
             <Text style={styles.text}>홈 화면입니다.</Text>
 
@@ -22,6 +23,7 @@ export default function HomeScreen({navigation} : any) {
             <TouchableOpacity>
                 <Text style={styles.button} onPress={() => {navigation.navigate('운동 조회')}}>식단 조회 화면으로</Text>
             </TouchableOpacity>
+
         </ScrollView>
     )
 }

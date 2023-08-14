@@ -39,7 +39,7 @@ export default function ExerciseScreen({navigation} : any) {
 
 const styles = StyleSheet.create({
     text : {fontFamily: 'SEBANG_Gothic_Bold', textAlign: 'center'},
-    icon : {marginBottom: 40},
+    icon : {marginBottom: 40, borderRadius: 100, backgroundColor: 'white', padding: 20, shadowColor: 'black', shadowOffset: {width: 0, height: 10}},
     date : {fontFamily: 'SEBANG_Gothic_Bold', textAlign: 'center', fontSize: 25},
     view : {padding : 20, flex : 1, justifyContent : 'center', alignItems: 'center'},
     button : {color: Colors.white, fontSize: 20, backgroundColor: Colors.blue400, padding: 5, 
