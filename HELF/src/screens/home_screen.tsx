@@ -1,22 +1,28 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { currentDate } from '../data';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { MD2Colors as Colors } from 'react-native-paper';
 
 const today = currentDate()
 
 export default function HomeScreen({navigation} : any) {
     return (
-        <View style={styles.view}>
+        <ScrollView style={styles.view}>
             <Text style={styles.text}>{today}</Text>
             <Text style={styles.text}>홈 화면입니다.</Text>
+
             <TouchableOpacity>
                 <Text style={styles.button} onPress={() => {navigation.navigate('운동 기록')}}>운동 기록 화면으로</Text>
             </TouchableOpacity>
+
             <TouchableOpacity>
                 <Text style={styles.button} onPress={() => {navigation.navigate('운동 조회')}}>운동 기록 조회 화면으로</Text>
             </TouchableOpacity>
-        </View>
+
+            <TouchableOpacity>
+                <Text style={styles.button} onPress={() => {navigation.navigate('운동 조회')}}>식단 조회 화면으로</Text>
+            </TouchableOpacity>
+        </ScrollView>
     )
 }
 

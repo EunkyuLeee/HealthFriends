@@ -1,12 +1,9 @@
 import {FC} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { ExerciseInfo } from '../data/ExerciseInfo'
 
-export type listComponent = {
-    date : Date,
-    exercise : string,
-}
 
-export const ExerciseList : FC<listComponent> = ({date, exercise}) => {
+export const ListBox : FC<ExerciseInfo> = ({date, name, info}) => {
     return (
         <View>
             <Text></Text>

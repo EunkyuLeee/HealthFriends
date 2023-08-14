@@ -101,7 +101,7 @@ export default function Navigator({navigation} : any){
             }}/>
             <Stack.Screen name='Camera' component={CameraScreen} options={{
                 headerLeft: ({onPress}) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={onPress}>
                         <Icon style={styles.icon} name='arrow-left' size={25} color={Colors.white}/>
                     </TouchableOpacity>
                 ),
