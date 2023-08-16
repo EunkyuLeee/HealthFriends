@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +21,7 @@ public class ExerciseController {
 
     @Operation(summary = "start exercise", description = "시간 기록형 운동 시작")
     @ApiResponse(responseCode = "200", description = "성공")
-    @GetMapping("/api/exStart")
+    @PutMapping("/api/exStart")
     public void exerciseStart(@RequestParam Long uid, @RequestParam Long exno) {
         if (inExercise) {
             return;
@@ -32,7 +32,7 @@ public class ExerciseController {
 
     @Operation(summary = "end exercise", description = "시간 기록형 운동 종료")
     @ApiResponse(responseCode = "200", description = "성공")
-    @GetMapping("/api/exEnd")
+    @PutMapping("/api/exEnd")
     public ExerciseData exerciseEnd() {
         if (!inExercise) {
             return null;
@@ -43,7 +43,7 @@ public class ExerciseController {
 
     @Operation(summary = "record exercise", description = "횟수 증가형 운동 기록")
     @ApiResponse(responseCode = "200", description = "성공")
-    @GetMapping("/api/exRecord")
+    @PutMapping("/api/exRecord")
     public ExerciseData exerciseRecord(@RequestParam Long uid, @RequestParam Long exno,
                                @RequestParam Integer count, @RequestParam Integer set) {
         return exerciseService.exerciseRecord(uid, exno, count, set);
