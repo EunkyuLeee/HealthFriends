@@ -27,10 +27,12 @@ export default function ExerciseList({navigation} : any) {
                         <Picker.Item label="test1" value="2" />    
                         <Picker.Item label="test2" value="3" />        
                     </Picker>         
-                </View>    
+                </View>
+
                 <TouchableOpacity>
                     <Text style={styles.button} onPress={() => {Alert.alert('조회 상세')}}>조회</Text>
-                </TouchableOpacity>  
+                </TouchableOpacity>
+                  
             </View>
             
             <View style={styles.body}>
