@@ -37,10 +37,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
         exerciseDto.setEndTime(new Timestamp(System.currentTimeMillis()));
 
-        ExerciseData entity = exerciseDto.toTimeEntity();
-
-        System.out.println(exerciseDto.toString());
-        System.out.println(entity.toString());;
+        ExerciseData entity = exerciseDto.toEntity();
 
         jpaExerciseRepository.save(entity);
 
@@ -50,10 +47,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public ExerciseDto exerciseRecord(ExerciseDto exerciseDto) {
 
-        ExerciseData entity = exerciseDto.toCountEntity();
-
-        System.out.println(exerciseDto.toString());
-        System.out.println(entity.toString());
+        ExerciseData entity = exerciseDto.toEntity();
 
         jpaExerciseRepository.save(entity);
 

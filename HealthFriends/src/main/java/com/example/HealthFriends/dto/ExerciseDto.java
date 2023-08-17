@@ -20,24 +20,16 @@ public class ExerciseDto {
     private Long exerciseNo;
     private Timestamp regdate;
 
-    public ExerciseData toCountEntity() {
+    public ExerciseData toEntity() {
 
         return ExerciseData.builder()
+                .startTime(startTime)
+                .endTime(endTime)
                 .count(count)
                 .sets(sets)
                 .userId(userId)
                 .exerciseNo(exerciseNo)
                 .regdate(regdate).build();
     }
-
-    public ExerciseData toTimeEntity() {
-
-        return ExerciseData.builder()
-                .startTime(startTime)
-                .endTime(endTime)
-                .userId(userId)
-                .exerciseNo(exerciseNo).build();
-    }
-
 
 }
