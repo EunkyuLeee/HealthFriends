@@ -1,32 +1,38 @@
 package com.example.HealthFriends.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 
-import static jakarta.persistence.GenerationType.AUTO;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Data
-@Table(name = "tbl_exercise_record")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "exercise_record")
 public class ExerciseData {
 
     @Id
-    @Column(name = "exercise_record_no")
-    @GeneratedValue(strategy = AUTO)
+    @Column(name = "record_no")
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @Column(name = "count_exercise")
+    @Column(name = "count")
     private Integer count;
 
-    @Column(name = "sets_exercise")
+    @Column(name = "sets")
     private Integer sets;
 
-    @Column(name = "start_exercise_time")
+    @Column(name = "start_time")
     private Timestamp startTime;
 
-    @Column(name = "end_exercise_time")
+    @Column(name = "end_time")
     private Timestamp endTime;
 
     @Column(name = "user_id")
@@ -36,5 +42,21 @@ public class ExerciseData {
     private Long exerciseNo;
 
     @Column(name = "regdate")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Timestamp regdate;
+
+    @Override
+    public String toString() {
+        return "ExerciseData{" +
+                "id=" + id +
+                ", count=" + count +
+                ", sets=" + sets +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", userId=" + userId +
+                ", exerciseNo=" + exerciseNo +
+                ", regdate=" + regdate +
+                '}';
+    }
 }
