@@ -1,15 +1,12 @@
 package com.example.HealthFriends.dto;
 
-import com.example.HealthFriends.entity.ExerciseData;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.example.HealthFriends.entity.ExerciseRecordData;
 import lombok.Data;
 
 import java.sql.Timestamp;
 
 @Data
-public class ExerciseDto {
+public class ExerciseRecordDto {
 
     private Long id;
     private Integer count;
@@ -20,9 +17,9 @@ public class ExerciseDto {
     private Long exerciseNo;
     private Timestamp regdate;
 
-    public ExerciseData toEntity() {
+    public ExerciseRecordData toEntity() {
 
-        return ExerciseData.builder()
+        return ExerciseRecordData.builder()
                 .startTime(startTime)
                 .endTime(endTime)
                 .count(count)

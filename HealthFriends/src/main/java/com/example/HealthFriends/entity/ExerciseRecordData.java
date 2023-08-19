@@ -14,7 +14,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @Builder
 @Table(name = "exercise_record")
-public class ExerciseData {
+public class ExerciseRecordData {
 
     @Id
     @Column(name = "record_no")

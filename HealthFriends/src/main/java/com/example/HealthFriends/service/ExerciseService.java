@@ -1,16 +1,20 @@
 package com.example.HealthFriends.service;
 
-import com.example.HealthFriends.dto.ExerciseDto;
-import com.example.HealthFriends.entity.ExerciseData;
+import com.example.HealthFriends.dto.ExerciseRecordDto;
+import com.example.HealthFriends.dto.ExerciseTypeDto;
 
 import java.util.List;
 
 public interface ExerciseService {
-    ExerciseDto exerciseStart(Long uid, Long exno);
+    ExerciseRecordDto exerciseStart(Long uid, Long exno);
 
-    ExerciseDto exerciseEnd(ExerciseDto exerciseDto);
+    ExerciseRecordDto exerciseEnd(ExerciseRecordDto exerciseRecordDto);
 
-    ExerciseDto exerciseRecord(ExerciseDto exerciseDto);
+    ExerciseRecordDto exerciseRecord(ExerciseRecordDto exerciseRecordDto);
 
-    List<ExerciseDto> exerciseGet();
+    List<ExerciseRecordDto> getExerciseRecord();
+
+    ExerciseTypeDto addExType(ExerciseTypeDto exerciseTypeDto);
+
+    List<ExerciseTypeDto> getExerciseType();
 }

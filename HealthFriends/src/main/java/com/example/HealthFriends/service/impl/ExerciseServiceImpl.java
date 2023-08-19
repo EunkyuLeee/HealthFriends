@@ -1,8 +1,11 @@
 package com.example.HealthFriends.service.impl;
 
-import com.example.HealthFriends.dto.ExerciseDto;
-import com.example.HealthFriends.entity.ExerciseData;
+import com.example.HealthFriends.dto.ExerciseRecordDto;
+import com.example.HealthFriends.dto.ExerciseTypeDto;
+import com.example.HealthFriends.entity.ExerciseRecordData;
+import com.example.HealthFriends.entity.ExerciseTypeData;
 import com.example.HealthFriends.repository.JPAExerciseRepository;
+import com.example.HealthFriends.repository.JPAExerciseTypeRepository;
 import com.example.HealthFriends.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,52 +18,54 @@ import java.util.List;
 public class ExerciseServiceImpl implements ExerciseService {
 
     private final JPAExerciseRepository jpaExerciseRepository;
+    private final JPAExerciseTypeRepository jpaExerciseTypeRepository;
 
     @Autowired
-    public ExerciseServiceImpl(JPAExerciseRepository jpaExerciseRepository) {
+    public ExerciseServiceImpl(JPAExerciseRepository jpaExerciseRepository, JPAExerciseTypeRepository jpaExerciseTypeRepository) {
         this.jpaExerciseRepository = jpaExerciseRepository;
+        this.jpaExerciseTypeRepository = jpaExerciseTypeRepository;
     }
 
     @Override
-    public ExerciseDto exerciseStart(Long uid, Long exno) {
-        ExerciseDto exerciseDto = new ExerciseDto();
+    public ExerciseRecordDto exerciseStart(Long uid, Long exno) {
+        ExerciseRecordDto exerciseRecordDto = new ExerciseRecordDto();
 
-        exerciseDto.setUserId(uid);
-        exerciseDto.setExerciseNo(exno);
-        exerciseDto.setStartTime(new Timestamp(System.currentTimeMillis()));
+        exerciseRecordDto.setUserId(uid);
+        exerciseRecordDto.setExerciseNo(exno);
+        exerciseRecordDto.setStartTime(new Timestamp(System.currentTimeMillis()));
 
-        return exerciseDto;
+        return exerciseRecordDto;
     }
 
     @Override
-    public ExerciseDto exerciseEnd(ExerciseDto exerciseDto) {
+    public ExerciseRecordDto exerciseEnd(ExerciseRecordDto exerciseRecordDto) {
 
-        exerciseDto.setEndTime(new Timestamp(System.currentTimeMillis()));
+        exerciseRecordDto.setEndTime(new Timestamp(System.currentTimeMillis()));
 
-        ExerciseData entity = exerciseDto.toEntity();
+        ExerciseRecordData entity = exerciseRecordDto.toEntity();
 
         jpaExerciseRepository.save(entity);
 
-        return exerciseDto;
+        return exerciseRecordDto;
     }
 
     @Override
-    public ExerciseDto exerciseRecord(ExerciseDto exerciseDto) {
+    public ExerciseRecordDto exerciseRecord(ExerciseRecordDto exerciseRecordDto) {
 
-        ExerciseData entity = exerciseDto.toEntity();
+        ExerciseRecordData entity = exerciseRecordDto.toEntity();
 
         jpaExerciseRepository.save(entity);
 
-        return exerciseDto;
+        return exerciseRecordDto;
     }
 
     @Override
-    public List<ExerciseDto> exerciseGet() {
-        List<ExerciseData> dataList = jpaExerciseRepository.findAll();
-        List<ExerciseDto> dtoList = new ArrayList<>();
+    public List<ExerciseRecordDto> getExerciseRecord() {
+        List<ExerciseRecordData> dataList = jpaExerciseRepository.findAll();
+        List<ExerciseRecordDto> dtoList = new ArrayList<>();
 
-        for (ExerciseData ed : dataList) {
-            ExerciseDto dto = new ExerciseDto();
+        for (ExerciseRecordData ed : dataList) {
+            ExerciseRecordDto dto = new ExerciseRecordDto();
 
             dto.setId(ed.getId());
             dto.setSets(ed.getSets());
@@ -70,6 +75,34 @@ public class ExerciseServiceImpl implements ExerciseService {
             dto.setEndTime(ed.getEndTime());
             dto.setExerciseNo(ed.getExerciseNo());
             dto.setRegdate(ed.getRegdate());
+
+            dtoList.add(dto);
+        }
+
+        return dtoList;
+    }
+
+    @Override
+    public ExerciseTypeDto addExType(ExerciseTypeDto exerciseTypeDto) {
+
+        ExerciseTypeData entity = exerciseTypeDto.toEntity();
+
+        jpaExerciseTypeRepository.save(entity);
+
+        return exerciseTypeDto;
+    }
+
+    @Override
+    public List<ExerciseTypeDto> getExerciseType() {
+        List<ExerciseTypeData> dataList = jpaExerciseTypeRepository.findAll();
+        ArrayList<ExerciseTypeDto> dtoList = new ArrayList<>();
+
+        for (ExerciseTypeData etd : dataList) {
+            ExerciseTypeDto dto = new ExerciseTypeDto();
+
+            dto.setExNo(etd.getExNo());
+            dto.setExName(etd.getExName());
+            dto.setRecType(etd.getRecType());
 
             dtoList.add(dto);
         }
