@@ -1,6 +1,7 @@
 package com.example.HealthFriends.dto;
 
 import com.example.HealthFriends.entity.ExerciseRecordData;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -15,6 +16,7 @@ public class ExerciseRecordDto {
     private Timestamp endTime;
     private Long userId;
     private Long exerciseNo;
+    private String exerciseTime;
     private Timestamp regdate;
 
     public ExerciseRecordData toEntity() {
@@ -26,6 +28,7 @@ public class ExerciseRecordDto {
                 .sets(sets)
                 .userId(userId)
                 .exerciseNo(exerciseNo)
+                .exerciseTime(exerciseTime)
                 .regdate(regdate).build();
     }
 
