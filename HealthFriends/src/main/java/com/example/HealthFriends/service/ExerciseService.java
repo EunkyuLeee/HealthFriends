@@ -17,4 +17,6 @@ public interface ExerciseService {
     ExerciseTypeDto addExType(ExerciseTypeDto exerciseTypeDto);
 
     List<ExerciseTypeDto> getExerciseType();
+
+    List<String> sortedListByTime(Long exNo);
 }
