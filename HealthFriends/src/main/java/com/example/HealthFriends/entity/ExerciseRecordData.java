@@ -14,7 +14,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @Builder
 @Table(name = "exercise_record")
-public class ExerciseData {
+public class ExerciseRecordData {
 
     @Id
     @Column(name = "record_no")
@@ -32,6 +32,9 @@ public class ExerciseData {
 
     @Column(name = "end_time")
     private Timestamp endTime;
+
+    @Column(name = "exercise_time")
+    private String exTime;
 
     @Column(name = "user_id")
     private Long userId;

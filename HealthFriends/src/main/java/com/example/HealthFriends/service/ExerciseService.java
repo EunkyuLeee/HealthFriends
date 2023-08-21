@@ -1,16 +1,25 @@
 package com.example.HealthFriends.service;
 
-import com.example.HealthFriends.dto.ExerciseDto;
-import com.example.HealthFriends.entity.ExerciseData;
+import com.example.HealthFriends.dto.ExerciseRecordDto;
+import com.example.HealthFriends.dto.ExerciseTypeDto;
 
+import java.rmi.NoSuchObjectException;
 import java.util.List;
 
 public interface ExerciseService {
-    ExerciseDto exerciseStart(Long uid, Long exno);
+    ExerciseRecordDto exerciseStart(Long uid, Long exno) throws NoSuchObjectException;
 
-    ExerciseDto exerciseEnd(ExerciseDto exerciseDto);
+    ExerciseRecordDto exerciseEnd(ExerciseRecordDto exerciseRecordDto);
 
-    ExerciseDto exerciseRecord(ExerciseDto exerciseDto);
+    ExerciseRecordDto exerciseRecord(ExerciseRecordDto exerciseRecordDto) throws NoSuchObjectException;
 
-    List<ExerciseDto> exerciseGet();
+    List<ExerciseRecordDto> getExerciseRecord();
+
+    ExerciseTypeDto addExType(ExerciseTypeDto exerciseTypeDto) throws NoSuchObjectException;
+
+    List<ExerciseTypeDto> getAllExerciseTypes();
+
+    void deleteExerciseRecord(Long id) throws NoSuchObjectException;
+
+    List<ExerciseTypeDto> getExerciseTypesByUserId(Long userId) throws NoSuchObjectException;
 }
