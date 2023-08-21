@@ -25,4 +25,7 @@ public class ExerciseTypeData {
 
     @Column(name = "recording_type")
     private Character recType;
+
+    @Column(name = "created_by")
+    private Long cBy;
 }
