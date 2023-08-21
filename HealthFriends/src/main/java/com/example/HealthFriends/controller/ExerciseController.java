@@ -42,7 +42,7 @@ public class ExerciseController {
             @ApiResponse(responseCode = "403", description = "비정상적 파라미터", content = @Content(schema = @Schema(implementation = ResponseEntity.class))),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 리소스", content = @Content(schema = @Schema(implementation = ResponseEntity.class)))
     })
-    @PostMapping("/api/exStart")
+    @PostMapping("/api/startEx")
     public void exerciseStart(@RequestParam Long uid, @RequestParam Long exno) throws Exception {
         if (inExercise) {
             return;
@@ -57,7 +57,7 @@ public class ExerciseController {
             @ApiResponse(responseCode = "403", description = "비정상적 파라미터", content = @Content(schema = @Schema(implementation = ResponseEntity.class))),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 리소스", content = @Content(schema = @Schema(implementation = ResponseEntity.class)))
     })
-    @PostMapping("/api/exEnd")
+    @PostMapping("/api/endEx")
     public ExerciseRecordDto exerciseEnd(@RequestParam String exerciseTime){
         if (!inExercise) {
             return null;
@@ -71,7 +71,7 @@ public class ExerciseController {
 
     @Operation(summary = "termination exercise record", description = "시간 기록형 운동 강제 종료")
     @ApiResponse(responseCode = "200", description = "성공")
-    @GetMapping("/api/exTerminate")
+    @GetMapping("/api/terminateEx")
     public boolean exerciseTerminate() {
         boolean ret;
 
@@ -88,7 +88,7 @@ public class ExerciseController {
             @ApiResponse(responseCode = "403", description = "비정상적 파라미터", content = @Content(schema = @Schema(implementation = ResponseEntity.class))),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 리소스", content = @Content(schema = @Schema(implementation = ResponseEntity.class)))
     })
-    @PostMapping("/api/exRecord")
+    @PostMapping("/api/recordEx")
     public ExerciseRecordDto exerciseRecord(@RequestParam Long uid, @RequestParam Long exno,
                                             @RequestParam Integer count, @RequestParam Integer set) throws NoSuchObjectException {
         ExerciseRecordDto exerciseRecordDto = new ExerciseRecordDto();
