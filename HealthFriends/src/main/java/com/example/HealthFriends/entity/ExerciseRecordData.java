@@ -33,6 +33,9 @@ public class ExerciseRecordData {
     @Column(name = "end_time")
     private Timestamp endTime;
 
+    @Column(name = "exercise_time")
+    private String exTime;
+
     @Column(name = "user_id")
     private Long userId;
 

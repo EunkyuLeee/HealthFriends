@@ -14,6 +14,7 @@ public class ExerciseRecordDto {
     private Integer sets;
     private Timestamp startTime;
     private Timestamp endTime;
+    private String exTime;
     private Long userId;
     private Long exerciseNo;
     private String exerciseTime;
@@ -24,6 +25,7 @@ public class ExerciseRecordDto {
         return ExerciseRecordData.builder()
                 .startTime(startTime)
                 .endTime(endTime)
+                .exTime(exTime)
                 .count(count)
                 .sets(sets)
                 .userId(userId)
@@ -33,3 +35,4 @@ public class ExerciseRecordDto {
     }
 
 }
+
