@@ -42,9 +42,6 @@ public class ExerciseRecordData {
     @Column(name = "exercise_no")
     private Long exerciseNo;
 
-    @Column(name = "exercise_time")
-    private String exerciseTime;
-
     @Column(name = "regdate")
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
