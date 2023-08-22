@@ -17,7 +17,6 @@ public class ExerciseRecordDto {
     private String exTime;
     private Long userId;
     private Long exerciseNo;
-    private String exerciseTime;
     private Timestamp regdate;
 
     public ExerciseRecordData toEntity() {
@@ -30,7 +29,6 @@ public class ExerciseRecordDto {
                 .sets(sets)
                 .userId(userId)
                 .exerciseNo(exerciseNo)
-                .exerciseTime(exerciseTime)
                 .regdate(regdate).build();
     }
 
