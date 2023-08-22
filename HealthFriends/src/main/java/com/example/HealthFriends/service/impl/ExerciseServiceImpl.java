@@ -198,4 +198,31 @@ public class ExerciseServiceImpl implements ExerciseService {
 
         return etdList;
     }
+
+    @Override
+    public List<String> sortedListByTime(Long exNo) {
+        List<ExerciseRecordData> entities = jpaExerciseRepository.findByExerciseNo(exNo);
+        List<ExerciseRecordDto> dtos = new ArrayList<>();
+
+        for (ExerciseRecordData ed : entities) {
+            ExerciseRecordDto dto = new ExerciseRecordDto();
+            dto.setExTime(ed.getExTime());
+            dtos.add(dto);
+        }
+
+        PriorityQueue<String> heap = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i = 0; i < dtos.size(); i++) {
+            if (dtos.get(i).getExTime() != null) {
+                heap.add(dtos.get(i).getExTime());
+            }
+        }
+        for (int i = 0; i < dtos.size(); i++) {
+            dtos.get(i).setExTime(heap.poll());
+        }
+
+        List<String> sortedList = dtos.stream().map(ExerciseRecordDto::getExTime).collect(Collectors.toList());
+
+        return sortedList;
+    }
 }

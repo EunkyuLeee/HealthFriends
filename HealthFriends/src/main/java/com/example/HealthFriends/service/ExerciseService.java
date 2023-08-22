@@ -22,4 +22,6 @@ public interface ExerciseService {
     void deleteExerciseRecord(Long id) throws NoSuchObjectException;
 
     List<ExerciseTypeDto> getExerciseTypesByUserId(Long userId) throws NoSuchObjectException;
+
+    List<String> sortedListByTime(Long exNo);
 }
