@@ -165,34 +165,6 @@ public class ExerciseServiceImpl implements ExerciseService {
         return dtoList;
     }
 
-    @Override
-    public List<String> sortedListByTime(Long exNo) {
-        List<ExerciseRecordData> entities = jpaExerciseRepository.findByExerciseNo(exNo);
-        List<ExerciseRecordDto> dtos = new ArrayList<>();
-
-        for (ExerciseRecordData ed : entities) {
-            ExerciseRecordDto dto = new ExerciseRecordDto();
-            dto.setExerciseTime(ed.getExerciseTime());
-            dtos.add(dto);
-        }
-
-        PriorityQueue<String> heap = new PriorityQueue<>(Collections.reverseOrder());
-
-        for (int i = 0; i < dtos.size(); i++) {
-            if (dtos.get(i).getExerciseTime() != null) {
-                heap.add(dtos.get(i).getExerciseTime());
-            }
-        }
-        for (int i = 0; i < dtos.size(); i++) {
-            dtos.get(i).setExerciseTime(heap.poll());
-        }
-
-        List<String> sortedList = dtos.stream().map(ExerciseRecordDto::getExerciseTime).collect(Collectors.toList());
-
-        return sortedList;
-    }
-
-
     public void deleteExerciseRecord(Long id) throws NoSuchObjectException {
         Optional<ExerciseRecordData> record = jpaExerciseRepository.findById(id);
         if (record.isEmpty()) {

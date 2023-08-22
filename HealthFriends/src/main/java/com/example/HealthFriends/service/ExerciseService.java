@@ -17,8 +17,6 @@ public interface ExerciseService {
 
     ExerciseTypeDto addExType(ExerciseTypeDto exerciseTypeDto) throws NoSuchObjectException;
 
-    List<String> sortedListByTime(Long exNo);
-
     List<ExerciseTypeDto> getAllExerciseTypes();
 
     void deleteExerciseRecord(Long id) throws NoSuchObjectException;
