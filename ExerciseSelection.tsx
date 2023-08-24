@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import type {PropsWithChildren} from 'react';
 import Toolbar from './Toolbar';
@@ -38,10 +38,34 @@ type SectionProps = PropsWithChildren<{
   interface ExerciseSelectionProps {
     navigation: ExerciseSelectionNavigationProp;
   }
+
+  // 운동종류 데이터의 타입 정의
+  type ExerciseOption = {
+    exNo: number;
+    exName: string;
+    recType: string;
+    cby: number;
+  };
   
   const ExerciseSelection: React.FC<ExerciseSelectionProps> = ({ navigation }) => {
 
     const [exerciseOptionsVisible, setExerciseOptionsVisible] = useState(false);
+    const [userExerciseOptions, setUserExerciseOptions] = useState<ExerciseOption[]>([]); // 운동 종류를 담을 상태
+
+    useEffect(() => {
+      // API 호출하여 회원의 아이디에 해당하는 운동 종류를 가져오는 부분
+      const userId = '1'; // 회원 아이디 (임시로 지정)
+      fetch(`http://helf.kro.kr:8080/api/getExTypesByUserId?uid=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          setUserExerciseOptions(data); // API에서 가져온 데이터로 업데이트
+        })
+        .catch(error => {
+          console.error('Error fetching exercise options:', error);
+        });
+    }, []);
+
+
         return (
           <SafeAreaView >
             <ScrollView
@@ -73,12 +97,14 @@ type SectionProps = PropsWithChildren<{
                 </View>
       
                 {exerciseOptionsVisible && (
-                  <View style={styles.exerciseOptions}>
-                    <Text style={styles.exerciseOption}>걷기</Text>
-                    <Text style={styles.exerciseOption}>하체</Text>
-                    {/* 다른 운동 종류 추가  */}
-                  </View>
-                )}
+                <View style={styles.exerciseOptions}>
+                {userExerciseOptions.map(option => (
+                <Text key={option.exNo} style={styles.exerciseOption}>
+                {option.exName}
+                 </Text>
+            ))}
+          </View>
+        )}
       
                 <Text style={styles.orText} > 또는 </Text>
       
