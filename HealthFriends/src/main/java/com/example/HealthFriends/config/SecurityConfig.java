@@ -1,40 +1,46 @@
 package com.example.HealthFriends.config;
 
-import com.example.HealthFriends.service.PrincipalOAuth2UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.HealthFriends.jwt.AuthTokenProvider;
+import com.example.HealthFriends.jwt.JwtAuthenticationFilter;
+import jakarta.validation.constraints.NotNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private PrincipalOAuth2UserService principalOauthUserService;
+    private final AuthTokenProvider authTokenProvider;
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeHttpRequests()
-                .requestMatchers("/user/**").authenticated()
-                .requestMatchers("/manager/**").hasAuthority("MANAGER")
-                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                .anyRequest().permitAll()
-
+    SecurityFilterChain filterChain(@NotNull HttpSecurity http) throws Exception {
+        http
+                .httpBasic().disable()
+                .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                .requestMatchers("/auth/**",
+                        "/api/**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**").permitAll() // 해당 경로는 인증 없이 접근 가능
+                .anyRequest().permitAll().and() // 인증 안되면 사용 모담
+                .headers()
+                .frameOptions()
+                .sameOrigin().and()
+                .cors().and()
+                .csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .formLogin()
-                .loginPage("/loginForm") //미인증자일경우 해당 uri를 호출
-                .loginProcessingUrl("/login") //login 주소가 호출되면 시큐리티가 낚아 채서(post로 오는것) 대신 로그인 진행 -> 컨트롤러를 안만들어도 된다.
-                .defaultSuccessUrl("/success")
-
-                .and()
-                .oauth2Login()
-                .loginPage("/loginForm")
-                .defaultSuccessUrl("/success")
-                .userInfoEndpoint()
-                .userService(principalOauthUserService);
+                .addFilterBefore(new JwtAuthenticationFilter(authTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

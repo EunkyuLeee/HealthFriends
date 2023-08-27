@@ -67,3 +67,8 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: kakao_account
+
+app:
+  auth:
+    tokenSecret: 214he08fgj982gh4097her0g23qng90q8g90qn384y90n236rt8qv2b47t9vhrt9239487vty
+    tokenExpiry: 2153215
