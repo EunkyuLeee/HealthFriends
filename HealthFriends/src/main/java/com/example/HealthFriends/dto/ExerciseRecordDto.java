@@ -1,6 +1,6 @@
 package com.example.HealthFriends.dto;
 
-import com.example.HealthFriends.entity.ExerciseRecordData;
+import com.example.HealthFriends.entity.ExerciseRecord;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -16,9 +16,9 @@ public class ExerciseRecordDto {
     private Long userId;
     private Long exerciseNo;
 
-    public ExerciseRecordData toEntity() {
+    public ExerciseRecord toEntity() {
 
-        return ExerciseRecordData.builder()
+        return ExerciseRecord.builder()
                 .id(id)
                 .startTime(startTime)
                 .exTime(exTime)

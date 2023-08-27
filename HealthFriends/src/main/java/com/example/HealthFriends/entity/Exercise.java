@@ -13,8 +13,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "tbl_exercise")
-public class ExerciseTypeData {
+@Table(name = "exercise")
+public class Exercise {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)

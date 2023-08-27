@@ -5,7 +5,7 @@ import com.example.HealthFriends.dto.ExerciseScheduleDto;
 import com.example.HealthFriends.dto.SimpleEx;
 import com.example.HealthFriends.entity.ExSchedule;
 import com.example.HealthFriends.entity.ExerciseScheduleData;
-import com.example.HealthFriends.entity.UserData;
+import com.example.HealthFriends.entity.User;
 import com.example.HealthFriends.repository.JPAScheduleRepository;
 import com.example.HealthFriends.repository.JPAUserRepository;
 import com.example.HealthFriends.service.ScheduleService;
@@ -53,7 +53,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public ExerciseScheduleDto addExerciseSchedule(ExerciseScheduleDto exerciseScheduleDto) throws NoSuchObjectException {
-        Optional<UserData> user = jpaUserRepository.findById(exerciseScheduleDto.getUser_id());
+        Optional<User> user = jpaUserRepository.findById(exerciseScheduleDto.getUser_id());
         if (user.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
@@ -64,7 +64,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public List<SimpleEx> getExerciseScheduleByDate(Long user_id, Integer year, Integer month, Integer day)
             throws NoSuchObjectException {
-        Optional<UserData> user = jpaUserRepository.findById(user_id);
+        Optional<User> user = jpaUserRepository.findById(user_id);
         if (user.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
@@ -119,7 +119,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<DailySchedule> getExerciseScheduleByMonth(Long user_id, Integer year, Integer month) throws NoSuchObjectException {
-        Optional<UserData> user = jpaUserRepository.findById(user_id);
+        Optional<User> user = jpaUserRepository.findById(user_id);
         if (user.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }

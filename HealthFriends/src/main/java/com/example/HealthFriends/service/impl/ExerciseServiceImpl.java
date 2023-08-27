@@ -4,9 +4,9 @@ import com.example.HealthFriends.dto.ExRecordByTypeDto;
 import com.example.HealthFriends.dto.ExerciseRecordDto;
 import com.example.HealthFriends.dto.ExerciseTypeDto;
 import com.example.HealthFriends.dto.RecordingDto;
-import com.example.HealthFriends.entity.ExerciseRecordData;
-import com.example.HealthFriends.entity.ExerciseTypeData;
-import com.example.HealthFriends.entity.UserData;
+import com.example.HealthFriends.entity.ExerciseRecord;
+import com.example.HealthFriends.entity.Exercise;
+import com.example.HealthFriends.entity.User;
 import com.example.HealthFriends.repository.JPAExerciseRepository;
 import com.example.HealthFriends.repository.JPAExerciseTypeRepository;
 import com.example.HealthFriends.repository.JPAUserRepository;
@@ -41,16 +41,16 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public List<ExerciseTypeDto> getExerciseTypesByUserId(Long userId) throws NoSuchObjectException {
-        Optional<UserData> record = jpaUserRepository.findById(userId);
+        Optional<User> record = jpaUserRepository.findById(userId);
         if (record.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
 
-        List<ExerciseTypeData> findList = jpaExerciseTypeRepository.findByUserId(userId);
+        List<Exercise> findList = jpaExerciseTypeRepository.findByUserId(userId);
 
         ArrayList<ExerciseTypeDto> etdList = new ArrayList<>();
 
-        for (ExerciseTypeData etd : findList) {
+        for (Exercise etd : findList) {
             ExerciseTypeDto dto = new ExerciseTypeDto();
 
             dto.setId(etd.getId());
@@ -66,14 +66,14 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public ExerciseTypeDto addExType(ExerciseTypeDto exerciseTypeDto) throws NoSuchObjectException {
 
-        Optional<UserData> user = jpaUserRepository.findById(exerciseTypeDto.getCreated_by());
+        Optional<User> user = jpaUserRepository.findById(exerciseTypeDto.getCreated_by());
         if (user.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
 
-        ExerciseTypeData entity = exerciseTypeDto.toEntity();
+        Exercise entity = exerciseTypeDto.toEntity();
 
-        ExerciseTypeData saved = jpaExerciseTypeRepository.save(entity);
+        Exercise saved = jpaExerciseTypeRepository.save(entity);
 
         exerciseTypeDto.setId(saved.getId());
 
@@ -83,11 +83,11 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public ExerciseRecordDto exerciseStart(Long uid, Long exid) throws NoSuchObjectException {
 
-        Optional<ExerciseTypeData> exercise = jpaExerciseTypeRepository.findById(exid);
+        Optional<Exercise> exercise = jpaExerciseTypeRepository.findById(exid);
         if (exercise.isEmpty()) {
             throw new NoSuchObjectException("There is NO such exercise_no!!");
         }
-        Optional<UserData> user = jpaUserRepository.findById(uid);
+        Optional<User> user = jpaUserRepository.findById(uid);
         if (user.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
@@ -98,7 +98,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         exerciseRecordDto.setExerciseNo(exid);
         exerciseRecordDto.setStartTime(new Timestamp(System.currentTimeMillis()));
 
-        ExerciseRecordData saved = jpaExerciseRepository.save(exerciseRecordDto.toEntity());
+        ExerciseRecord saved = jpaExerciseRepository.save(exerciseRecordDto.toEntity());
 
         exerciseRecordDto.setId(saved.getId());
 
@@ -107,11 +107,11 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public ExerciseRecordDto exerciseTerminate(Long recordId) throws NoSuchObjectException {
-        Optional<ExerciseRecordData> record = jpaExerciseRepository.findById(recordId);
+        Optional<ExerciseRecord> record = jpaExerciseRepository.findById(recordId);
         if (record.isEmpty()) {
             throw new NoSuchObjectException("There is NO such record_id!!");
         }
-        ExerciseRecordData data = record.get();
+        ExerciseRecord data = record.get();
         if (data.getCount() != null || data.getExTime() != null) {
             throw new IllegalArgumentException("This is NOT an ongoing exercise!!");
         }
@@ -130,12 +130,12 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public ExerciseRecordDto exerciseRecord(RecordingDto recordingDto) throws NoSuchObjectException {
-        Optional<ExerciseRecordData> byId = jpaExerciseRepository.findById(recordingDto.getId());
+        Optional<ExerciseRecord> byId = jpaExerciseRepository.findById(recordingDto.getId());
         if (byId.isEmpty()) {
             throw new NoSuchObjectException("There is NO such exercise_no!!");
         }
 
-        ExerciseRecordData data = byId.get();
+        ExerciseRecord data = byId.get();
         ExerciseRecordDto recordDto = new ExerciseRecordDto();
 
         recordDto.setId(data.getId());
@@ -173,13 +173,13 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public List<ExRecordByTypeDto> getExerciseRecord(Long user_id, Long exercise_no) throws NoSuchObjectException {
-        Optional<UserData> byUserId = jpaUserRepository.findById(user_id);
+        Optional<User> byUserId = jpaUserRepository.findById(user_id);
         if (byUserId.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
 
-        List<ExerciseRecordData> dataList = null;
-        Optional<ExerciseTypeData> byExId = null;
+        List<ExerciseRecord> dataList = null;
+        Optional<Exercise> byExId = null;
 
         if (exercise_no == 0L) {
             dataList = jpaExerciseRepository.findByUserId(user_id);
@@ -194,7 +194,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
         List<ExRecordByTypeDto> dtoList = new ArrayList<>();
 
-        for (ExerciseRecordData ed : dataList) {
+        for (ExerciseRecord ed : dataList) {
             ExRecordByTypeDto dto = new ExRecordByTypeDto();
 
             dto.setId(ed.getId());
@@ -214,12 +214,12 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     public List<ExRecordByTypeDto> getDailyExerciseRecordById(Long id) throws NoSuchObjectException {
-        Optional<ExerciseRecordData> byId = jpaExerciseRepository.findById(id);
+        Optional<ExerciseRecord> byId = jpaExerciseRepository.findById(id);
         if (byId.isEmpty()) {
             throw new NoSuchObjectException("There is NO such id!!");
         }
 
-        ExerciseRecordData data = byId.get();
+        ExerciseRecord data = byId.get();
 
         String date1 = new SimpleDateFormat("yyyy-MM-dd").format(data.getStartTime());
         Calendar cal = Calendar.getInstance();
@@ -229,11 +229,11 @@ public class ExerciseServiceImpl implements ExerciseService {
         tmp.setTime(cal.getTime().getTime());
         String date2 = new SimpleDateFormat("yyyy-MM-dd").format(tmp);
 
-        List<ExerciseRecordData> byDate = jpaExerciseRepository.findByDate(date1, date2);
+        List<ExerciseRecord> byDate = jpaExerciseRepository.findByDate(date1, date2);
 
         List<ExRecordByTypeDto> dtoList = new ArrayList<>();
 
-        for (ExerciseRecordData erd : byDate) {
+        for (ExerciseRecord erd : byDate) {
             ExRecordByTypeDto dto = new ExRecordByTypeDto();
 
             dto.setId(erd.getId());

@@ -1,6 +1,6 @@
 package com.example.HealthFriends.dto;
 
-import com.example.HealthFriends.entity.ExerciseTypeData;
+import com.example.HealthFriends.entity.Exercise;
 import lombok.Data;
 
 @Data
@@ -9,9 +9,9 @@ public class ExerciseTypeDto {
     private String exercise_name;
     private Long created_by;
 
-    public ExerciseTypeData toEntity() {
+    public Exercise toEntity() {
 
-        return ExerciseTypeData.builder()
+        return Exercise.builder()
                 .id(id)
                 .exName(exercise_name)
                 .cBy(created_by)

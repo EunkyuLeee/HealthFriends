@@ -1,9 +1,7 @@
 package com.example.HealthFriends.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -15,7 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @Builder
 @Table(name = "exercise_record")
-public class ExerciseRecordData {
+public class ExerciseRecord {
 
     @Id
     @Column(name = "id")
