@@ -3,12 +3,11 @@ package com.example.HealthFriends.controller;
 import com.example.HealthFriends.dto.FriendsRequestDTO;
 import com.example.HealthFriends.dto.TokenDTO;
 import com.example.HealthFriends.entity.Friends;
-import com.example.HealthFriends.service.FriendService;
+import com.example.HealthFriends.service.impl.FriendServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FriendController {
 
-    private final FriendService friendService;
+    private final FriendServiceImpl friendService;
 
     @Operation(summary = "add to friends", description = "친구 추가")
     @ApiResponse(responseCode = "200", description = "성공")
