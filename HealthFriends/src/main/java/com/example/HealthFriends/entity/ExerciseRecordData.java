@@ -1,5 +1,6 @@
 package com.example.HealthFriends.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +18,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class ExerciseRecordData {
 
     @Id
-    @Column(name = "record_no")
+    @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
@@ -30,9 +31,6 @@ public class ExerciseRecordData {
     @Column(name = "start_time")
     private Timestamp startTime;
 
-    @Column(name = "end_time")
-    private Timestamp endTime;
-
     @Column(name = "exercise_time")
     private String exTime;
 
@@ -41,9 +39,4 @@ public class ExerciseRecordData {
 
     @Column(name = "exercise_no")
     private Long exerciseNo;
-
-    @Column(name = "regdate")
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Timestamp regdate;
 }

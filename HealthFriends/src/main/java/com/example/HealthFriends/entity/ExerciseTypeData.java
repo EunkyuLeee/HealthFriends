@@ -16,15 +16,12 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "tbl_exercise")
 public class ExerciseTypeData {
     @Id
-    @Column(name = "exercise_no")
+    @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private Long exNo;
+    private Long id;
 
     @Column(name = "exercise_name")
     private String exName;
-
-    @Column(name = "recording_type")
-    private Character recType;
 
     @Column(name = "created_by")
     private Long cBy;

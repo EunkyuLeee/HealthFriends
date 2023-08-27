@@ -5,17 +5,16 @@ import lombok.Data;
 
 @Data
 public class ExerciseTypeDto {
-    private Long exNo;
-    private String exName;
-    private Character recType;
-    private Long cBy;
+    private Long id;
+    private String exercise_name;
+    private Long created_by;
 
     public ExerciseTypeData toEntity() {
 
         return ExerciseTypeData.builder()
-                .exName(exName)
-                .recType(recType)
-                .cBy(cBy)
+                .id(id)
+                .exName(exercise_name)
+                .cBy(created_by)
                 .build();
     }
 

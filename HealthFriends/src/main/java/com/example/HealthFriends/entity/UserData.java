@@ -34,9 +34,11 @@ public class UserData {
     @Column(name = "provider")
     private String provider;
 
-    @Column(name = "provider_id")
-    private String pid;
-
     @Column(name = "create_date")
     private Timestamp cdate;
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
+
