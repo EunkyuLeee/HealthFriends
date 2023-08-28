@@ -4,7 +4,7 @@ import com.example.HealthFriends.dto.DailySchedule;
 import com.example.HealthFriends.dto.ExerciseScheduleDto;
 import com.example.HealthFriends.dto.SimpleEx;
 import com.example.HealthFriends.entity.ExSchedule;
-import com.example.HealthFriends.entity.ExerciseScheduleData;
+import com.example.HealthFriends.entity.ExerciseSchedule;
 import com.example.HealthFriends.entity.User;
 import com.example.HealthFriends.repository.JPAScheduleRepository;
 import com.example.HealthFriends.repository.JPAUserRepository;
@@ -28,11 +28,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public List<ExerciseScheduleDto> getAllExerciseSchedule() {
-        List<ExerciseScheduleData> all = jpaScheduleRepository.findAll();
+        List<ExerciseSchedule> all = jpaScheduleRepository.findAll();
 
         List<ExerciseScheduleDto> dtoList = new ArrayList<>();
 
-        for (ExerciseScheduleData esd : all) {
+        for (ExerciseSchedule esd : all) {
             ExerciseScheduleDto tmp = new ExerciseScheduleDto();
 
             tmp.setId(esd.getId());
@@ -69,10 +69,10 @@ public class ScheduleServiceImpl implements ScheduleService {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
 
-        List<ExerciseScheduleData> byDate = jpaScheduleRepository.findByDate(user_id, year, month, day);
+        List<ExerciseSchedule> byDate = jpaScheduleRepository.findByDate(user_id, year, month, day);
         List<SimpleEx> ret = new ArrayList<>();
 
-        for (ExerciseScheduleData esd : byDate) {
+        for (ExerciseSchedule esd : byDate) {
             SimpleEx tmp = new SimpleEx();
 
             tmp.setId(esd.getId());
@@ -95,14 +95,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public ExerciseScheduleDto getExerciseScheduleById(Long id) throws NoSuchObjectException {
-        Optional<ExerciseScheduleData> byId = jpaScheduleRepository.findById(id);
+        Optional<ExerciseSchedule> byId = jpaScheduleRepository.findById(id);
         if (byId.isEmpty()) {
             throw new NoSuchObjectException("There is NO such exercise schedule ID!!");
         }
 
         ExerciseScheduleDto dto = new ExerciseScheduleDto();
 
-        ExerciseScheduleData data = byId.get();
+        ExerciseSchedule data = byId.get();
 
         dto.setId(data.getId());
         dto.setTitle(data.getTitle());

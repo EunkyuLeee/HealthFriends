@@ -1,6 +1,6 @@
 package com.example.HealthFriends.dto;
 
-import com.example.HealthFriends.entity.ExerciseScheduleData;
+import com.example.HealthFriends.entity.ExerciseSchedule;
 import lombok.Data;
 
 @Data
@@ -15,8 +15,8 @@ public class ExerciseScheduleDto {
     private Boolean complete;
     private Long user_id;
 
-    public ExerciseScheduleData toEntity() {
-        return ExerciseScheduleData.builder()
+    public ExerciseSchedule toEntity() {
+        return ExerciseSchedule.builder()
                 .id(id)
                 .title(title)
                 .year(year)
