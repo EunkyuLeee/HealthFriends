@@ -149,14 +149,4 @@ public class ExerciseController {
         return exerciseService.getExerciseTypesByUserId(uid);
     }
 
-
-    @Operation(summary = "ranking", description = "시간 순으로 정렬된 순위 조회")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "성공"),
-            @ApiResponse(responseCode = "404", description = "존재하지 않는 리소스", content = @Content(schema = @Schema(implementation = ResponseEntity.class)))
-    })
-    @GetMapping("/api/ranking")
-    public List<String> sortedList(@RequestParam Long exNo) {
-        return exerciseService.sortedListByTime(exNo);
-    }
 }
