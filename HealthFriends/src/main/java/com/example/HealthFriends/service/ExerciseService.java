@@ -24,4 +24,5 @@ public interface ExerciseService {
 
     List<ExRecordByTypeDto> getDailyExerciseRecordById(Long id) throws NoSuchObjectException;
 
+    List<String> sortedListByTime(Long exNo);
 }

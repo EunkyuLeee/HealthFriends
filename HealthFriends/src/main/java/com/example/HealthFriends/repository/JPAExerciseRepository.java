@@ -20,4 +20,6 @@ public interface JPAExerciseRepository extends JpaRepository<ExerciseRecord, Lon
             "where (start_time >= ?1 and start_time < ?2) order by id",
             nativeQuery = true)
     List<ExerciseRecord> findByDate(String date1, String date2);
+
+    List<ExerciseRecord> findByExerciseNo(Long exNo);
 }

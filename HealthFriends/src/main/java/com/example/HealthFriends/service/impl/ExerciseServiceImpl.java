@@ -19,7 +19,10 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 import java.util.Optional;
 
 @Service
@@ -250,4 +253,31 @@ public class ExerciseServiceImpl implements ExerciseService {
         return dtoList;
     }
 
+
+    @Override
+    public List<String> sortedListByTime(Long exNo) {
+        List<ExerciseRecord> entities = jpaExerciseRepository.findByExerciseNo(exNo);
+        List<ExerciseRecordDto> dtos = new ArrayList<>();
+
+        for (ExerciseRecord ed : entities) {
+            ExerciseRecordDto dto = new ExerciseRecordDto();
+            dto.setExTime(ed.getExTime());
+            dtos.add(dto);
+        }
+
+        PriorityQueue<String> heap = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i = 0; i < dtos.size(); i++) {
+            if (dtos.get(i).getExTime() != null) {
+                heap.add(dtos.get(i).getExTime());
+            }
+        }
+        for (int i = 0; i < dtos.size(); i++) {
+            dtos.get(i).setExTime(heap.poll());
+        }
+
+        List<String> sortedList = dtos.stream().map(ExerciseRecordDto::getExTime).collect(Collectors.toList());
+
+        return sortedList;
+    }
 }
