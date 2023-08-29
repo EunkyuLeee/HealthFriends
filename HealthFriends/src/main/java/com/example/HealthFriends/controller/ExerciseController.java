@@ -86,7 +86,7 @@ public class ExerciseController {
         return exerciseService.exerciseRecord(recordingDto);
     }
 
-    @Operation(summary = "get exercise records", description = "운동 기록 조회 (exercise_no가 0이면 전체 운동 기록 출력")
+    @Operation(summary = "get exercise records", description = "운동 기록 조회 (exercise_no가 0이면 전체 운동 기록 출력)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "성공"),
             @ApiResponse(responseCode = "404", description = "존재하지 않는 리소스", content = @Content(schema = @Schema(implementation = ResponseEntity.class)))
