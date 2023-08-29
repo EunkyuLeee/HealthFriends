@@ -1,7 +1,11 @@
 package com.example.HealthFriends.service.impl;
 
-import com.example.HealthFriends.dto.*;
 import com.example.HealthFriends.entity.ExRanking;
+import com.example.HealthFriends.dto.ExRecordByTypeDto;
+import com.example.HealthFriends.dto.ExerciseRecordDto;
+import com.example.HealthFriends.dto.ExerciseTypeDto;
+import com.example.HealthFriends.dto.RecordingDto;
+import com.example.HealthFriends.entity.ExDailyRecord;
 import com.example.HealthFriends.entity.ExerciseRecord;
 import com.example.HealthFriends.entity.Exercise;
 import com.example.HealthFriends.entity.User;
@@ -174,12 +178,12 @@ public class ExerciseServiceImpl implements ExerciseService {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
 
-        List<ExerciseRecord> dataList = null;
-        Optional<Exercise> byExId = null;
+        List<ExDailyRecord> dataList = null;
 
         if (exercise_no == 0L) {
             dataList = jpaExerciseRepository.findByUserId(user_id);
         } else {
+            Optional<Exercise> byExId = null;
             byExId = jpaExerciseTypeRepository.findById(exercise_no);
             if (byExId.isEmpty()) {
                 throw new NoSuchObjectException("There is NO such exercise_no!!");
@@ -190,18 +194,15 @@ public class ExerciseServiceImpl implements ExerciseService {
 
         List<ExRecordByTypeDto> dtoList = new ArrayList<>();
 
-        for (ExerciseRecord ed : dataList) {
+        for (ExDailyRecord ed : dataList) {
             ExRecordByTypeDto dto = new ExRecordByTypeDto();
 
             dto.setId(ed.getId());
-            dto.setStart_time(ed.getStartTime());
-            dto.setExercise_time(ed.getExTime());
+            dto.setStart_time(ed.getStart_time());
+            dto.setExercise_time(ed.getExercise_time());
             dto.setCount(ed.getCount());
             dto.setSets(ed.getSets());
-
-            String exName = jpaExerciseTypeRepository.findById(ed.getExerciseNo()).get().getExName();
-
-            dto.setTitle(exName);
+            dto.setTitle(ed.getExercise_name());
 
             dtoList.add(dto);
         }
@@ -225,20 +226,19 @@ public class ExerciseServiceImpl implements ExerciseService {
         tmp.setTime(cal.getTime().getTime());
         String date2 = new SimpleDateFormat("yyyy-MM-dd").format(tmp);
 
-        List<ExerciseRecord> byDate = jpaExerciseRepository.findByDate(date1, date2);
+        List<ExDailyRecord> byDate = jpaExerciseRepository.findByDate(data.getUserId(), date1, date2);
 
         List<ExRecordByTypeDto> dtoList = new ArrayList<>();
 
-        for (ExerciseRecord erd : byDate) {
+        for (ExDailyRecord erd : byDate) {
             ExRecordByTypeDto dto = new ExRecordByTypeDto();
 
             dto.setId(erd.getId());
-            dto.setStart_time(erd.getStartTime());
-            dto.setExercise_time(erd.getExTime());
+            dto.setStart_time(erd.getStart_time());
+            dto.setExercise_time(erd.getExercise_time());
             dto.setSets(erd.getSets());
             dto.setCount(erd.getCount());
-
-            dto.setTitle(jpaExerciseTypeRepository.findById(erd.getExerciseNo()).get().getExName());
+            dto.setTitle(erd.getExercise_name());
 
             dtoList.add(dto);
         }
