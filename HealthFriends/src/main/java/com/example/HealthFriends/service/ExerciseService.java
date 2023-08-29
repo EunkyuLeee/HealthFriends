@@ -1,9 +1,6 @@
 package com.example.HealthFriends.service;
 
-import com.example.HealthFriends.dto.ExRecordByTypeDto;
-import com.example.HealthFriends.dto.ExerciseRecordDto;
-import com.example.HealthFriends.dto.ExerciseTypeDto;
-import com.example.HealthFriends.dto.RecordingDto;
+import com.example.HealthFriends.dto.*;
 
 import java.rmi.NoSuchObjectException;
 import java.util.List;
@@ -24,5 +21,7 @@ public interface ExerciseService {
 
     List<ExRecordByTypeDto> getDailyExerciseRecordById(Long id) throws NoSuchObjectException;
 
-    List<String> sortedListByTime(Long exNo);
+    List<Ranking> getRanking(Long exNo) throws NoSuchObjectException;
+
+    Ranking getRankingByUserId(Long exNo, Long uid) throws NoSuchObjectException;
 }

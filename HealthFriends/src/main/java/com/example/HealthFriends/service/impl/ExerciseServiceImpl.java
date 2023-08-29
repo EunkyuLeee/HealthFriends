@@ -1,9 +1,7 @@
 package com.example.HealthFriends.service.impl;
 
-import com.example.HealthFriends.dto.ExRecordByTypeDto;
-import com.example.HealthFriends.dto.ExerciseRecordDto;
-import com.example.HealthFriends.dto.ExerciseTypeDto;
-import com.example.HealthFriends.dto.RecordingDto;
+import com.example.HealthFriends.dto.*;
+import com.example.HealthFriends.entity.ExRanking;
 import com.example.HealthFriends.entity.ExerciseRecord;
 import com.example.HealthFriends.entity.Exercise;
 import com.example.HealthFriends.entity.User;
@@ -17,13 +15,8 @@ import org.springframework.stereotype.Service;
 import java.rmi.NoSuchObjectException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Optional;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
@@ -255,29 +248,63 @@ public class ExerciseServiceImpl implements ExerciseService {
 
 
     @Override
-    public List<String> sortedListByTime(Long exNo) {
-        List<ExerciseRecord> entities = jpaExerciseRepository.findByExerciseNo(exNo);
-        List<ExerciseRecordDto> dtos = new ArrayList<>();
-
-        for (ExerciseRecord ed : entities) {
-            ExerciseRecordDto dto = new ExerciseRecordDto();
-            dto.setExTime(ed.getExTime());
-            dtos.add(dto);
+    public List<Ranking> getRanking(Long exNo) throws NoSuchObjectException {
+        Optional<Exercise> byId = jpaExerciseTypeRepository.findById(exNo);
+        if (byId.isEmpty()) {
+            throw new NoSuchObjectException("There is NO such exercise_no!!");
+        } else if (byId.get().getCBy() != 0L) {
+            throw new IllegalArgumentException("This exercise_no is NOT accessable!!");
         }
 
-        PriorityQueue<String> heap = new PriorityQueue<>(Collections.reverseOrder());
+        List<ExRanking> rankList = jpaExerciseRepository.getRankList(exNo);
+        return getRankings(rankList);
+    }
 
-        for (int i = 0; i < dtos.size(); i++) {
-            if (dtos.get(i).getExTime() != null) {
-                heap.add(dtos.get(i).getExTime());
+    @Override
+    public Ranking getRankingByUserId(Long exNo, Long uid) throws NoSuchObjectException {
+        Optional<User> byId = jpaUserRepository.findById(uid);
+        if (byId.isEmpty() || uid == 0L) {
+            throw new NoSuchObjectException("There is NO such user_id!!");
+        }
+        Optional<Exercise> findById = jpaExerciseTypeRepository.findById(exNo);
+        if (findById.isEmpty()) {
+            throw new NoSuchObjectException("There is NO such exercise_no!!");
+        }
+
+        List<ExRanking> rankList = jpaExerciseRepository.getRankList(exNo);
+        List<Ranking> rankings = getRankings(rankList);
+
+        int index = 0;
+
+        for (ExRanking r : rankList) {
+            if (Objects.equals(r.getId(), uid)) {
+                break;
             }
-        }
-        for (int i = 0; i < dtos.size(); i++) {
-            dtos.get(i).setExTime(heap.poll());
+            index++;
         }
 
-        List<String> sortedList = dtos.stream().map(ExerciseRecordDto::getExTime).collect(Collectors.toList());
+        return rankings.get(index);
+    }
 
-        return sortedList;
+    private List<Ranking> getRankings(List<ExRanking> rankList) {
+        List<Ranking> ranking = new ArrayList<>();
+        Ranking prev = null;
+        long index = 1;
+
+        for (ExRanking er : rankList) {
+            Ranking tmp = new Ranking();
+
+            tmp.setName(er.getName());
+            tmp.setTime(er.getExercise_time());
+            if (prev == null) {
+                tmp.setRank(index);
+            } else {
+                tmp.setRank(prev.getTime().equals(er.getExercise_time()) ? prev.getRank() : index);
+            }
+            prev = tmp;
+            ranking.add(tmp);
+            index++;
+        }
+        return ranking;
     }
 }

@@ -15,8 +15,8 @@ public class ExerciseServiceRankingTests {
 //        System.out.println(exerciseServiceImpl.getListByExerciseNo(3L));
 //    }
 
-    @Test
-    public void testSortedListByTime(){
-        System.out.println(exerciseServiceImpl.sortedListByTime(3L));
-    }
+//    @Test
+//    public void testSortedListByTime(){
+//        System.out.println(exerciseServiceImpl.sortedListByTime(3L));
+//    }
 }
