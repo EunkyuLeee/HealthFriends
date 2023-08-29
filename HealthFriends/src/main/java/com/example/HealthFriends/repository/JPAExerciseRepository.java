@@ -1,5 +1,6 @@
 package com.example.HealthFriends.repository;
 
+import com.example.HealthFriends.entity.ExRanking;
 import com.example.HealthFriends.entity.ExDailyRecord;
 import com.example.HealthFriends.entity.ExerciseRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,5 +34,10 @@ public interface JPAExerciseRepository extends JpaRepository<ExerciseRecord, Lon
             nativeQuery = true)
     List<ExDailyRecord> findByDate(Long uid, String date1, String date2);
 
-    List<ExerciseRecord> findByExerciseNo(Long exNo);
+    @Query(value = "select U.id, U.name, R.exercise_time from exercise_record as R join user as U " +
+            "on R.user_id = U.id " +
+            "where (R.exercise_no = ?1 and R.exercise_time IS NOT NULL) " +
+            "order by R.exercise_time desc",
+            nativeQuery = true)
+    List<ExRanking> getRankList(Long exNo);
 }
