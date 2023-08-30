@@ -1,10 +1,7 @@
 package com.example.HealthFriends.service.impl;
 
+import com.example.HealthFriends.dto.*;
 import com.example.HealthFriends.entity.ExRanking;
-import com.example.HealthFriends.dto.ExRecordByTypeDto;
-import com.example.HealthFriends.dto.ExerciseRecordDto;
-import com.example.HealthFriends.dto.ExerciseTypeDto;
-import com.example.HealthFriends.dto.RecordingDto;
 import com.example.HealthFriends.entity.ExDailyRecord;
 import com.example.HealthFriends.entity.ExerciseRecord;
 import com.example.HealthFriends.entity.Exercise;
@@ -183,7 +180,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         if (exercise_no == 0L) {
             dataList = jpaExerciseRepository.findByUserId(user_id);
         } else {
-            Optional<Exercise> byExId = null;
+            Optional<Exercise> byExId;
             byExId = jpaExerciseTypeRepository.findById(exercise_no);
             if (byExId.isEmpty()) {
                 throw new NoSuchObjectException("There is NO such exercise_no!!");
