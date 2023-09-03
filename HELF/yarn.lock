@@ -1541,6 +1541,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@react-native-async-storage/root@github:react-native-community/async-storage":
+  resolved "git+ssh://git@github.com/react-native-community/async-storage.git#03fde4b4eb4f18a443f18a3e9c5fff7515ccfaa4"
+
 "@react-native-community/cli-clean@11.3.5":
   version "11.3.5"
   resolved "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-11.3.5.tgz"
