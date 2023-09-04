@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/SEBANG Gothic OTF Bold.otf",
+      "sha1": "bcf12a909db306168264fe85a9db1bd4937ef06d"
+    },
+    {
+      "path": "src/assets/fonts/SEBANG Gothic OTF.otf",
+      "sha1": "40cb3e6f5f7df829bd5bc08811049d9a7ef1ebad"
+    },
+    {
+      "path": "src/assets/fonts/SEBANG_Gothic.ttf",
+      "sha1": "78d79442ddfa6224fc83cc6f0214c4a06300cb6c"
+    },
+    {
+      "path": "src/assets/fonts/SEBANG_Gothic_Bold.ttf",
+      "sha1": "597d386a0d7b5c086369ff571ad70f76ba205d8e"
+    }
+  ]
+}
