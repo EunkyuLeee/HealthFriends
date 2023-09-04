@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Component
@@ -67,8 +68,8 @@ public class ClientKakao implements ClientProxy{
                     .id(id)
                     .role(Role.USER)
                     .name(name)
-                    .password("Test")
-                    .create_date(LocalDateTime.now())
+                    .pw("Test")
+                    .cdate(Timestamp.valueOf(LocalDateTime.now()))
                     .email(email)
                     .provider(Provider.KAKAO)
                     .build();

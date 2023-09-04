@@ -32,7 +32,8 @@ public class User {
     private String pw;
 
     @Column(name = "provider")
-    private String provider;
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     @Column(name = "create_date")
     private Timestamp cdate;

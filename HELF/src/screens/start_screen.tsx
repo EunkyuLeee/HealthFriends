@@ -1,15 +1,32 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {MD2Colors as Colors} from 'react-native-paper';
+import axios from "axios"
+import {KakaoOAuthToken, login, loginWithKakaoAccount} from "@react-native-seoul/kakao-login";
 
 export default function StartScreen({navigation}: any) {
+
+  const Url = "http://10.0.2.2:8080"
+
+  const signInWithKakao = async (): Promise<void> => {
+    const accessToken: KakaoOAuthToken = await loginWithKakaoAccount();
+    const res = await axios.post(Url + "/auth/kakao", accessToken, {headers: { "User-Agent": "Mozilla/5.0" }})
+        .then((response) => {
+          console.log(response)
+          navigation.navigate('Main', {userToken : response.data.appToken})
+        })
+        .catch((e) => {
+          console.log(e)
+        });
+
+  }
+
   return (
     <View style={styles.view}>
       <TouchableOpacity>
         <Text
           style={styles.button_login}
           onPress={() => {
-            navigation.navigate('Home');
+            signInWithKakao()
           }}>
           카카오로 로그인
         </Text>
