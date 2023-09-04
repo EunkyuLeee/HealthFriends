@@ -1,20 +1,25 @@
 package com.example.HealthFriends.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-@Table(name = "user")
-@Getter
+import static jakarta.persistence.GenerationType.IDENTITY;
+
 @Entity
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "user")
 public class User {
-
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -24,17 +29,15 @@ public class User {
     private String email;
 
     @Column(name = "password")
-    private String password;
+    private String pw;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "provider")
-    private Provider provider;
+    private String provider;
 
     @Column(name = "create_date")
-    private LocalDateTime create_date;
+    private Timestamp cdate;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
