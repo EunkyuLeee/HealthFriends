@@ -24,6 +24,10 @@ export default function HomeScreen({navigation} : any) {
                 <Text style={styles.button} onPress={() => {navigation.navigate('운동 조회')}}>식단 조회 화면으로</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity>
+                <Text style={styles.button} onPress={() => {navigation.navigate('친구 목록')}}>친구 조회 화면으로</Text>
+            </TouchableOpacity>
+
         </ScrollView>
     )
 }

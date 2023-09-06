@@ -14,6 +14,7 @@ import SignUp from '../screens/sign_up';
 import CameraScreen from '../screens/camera_screen';
 import Profile from '../screens/profile_screen';
 import ExerciseDetails from '../screens/exercise_details';
+import FriendsList from '../screens/friends_list';
 
 export const User = Data.createUserInfo()
 const Stack = createStackNavigator()
@@ -133,6 +134,22 @@ export default function Navigator({navigation} : any){
                 headerTitleAlign: 'center'
             }}/>
             <Stack.Screen name='Details' component={ExerciseDetails} options={{
+                headerLeft: ({onPress}) => (
+                    <TouchableOpacity onPress={onPress}>
+                        <Icon style={styles.icon} name='arrow-left' size={25} color={Colors.white}/>
+                    </TouchableOpacity>
+                ),
+                headerTintColor: '#ffffff',
+                headerStyle: { 
+                    backgroundColor: Colors.blue400,
+                },
+                headerTitleStyle: {
+                    fontFamily: 'SEBANG_Gothic_Bold',
+                    fontSize: 20,
+                },
+                headerTitleAlign: 'center'
+            }}/>
+            <Stack.Screen name='친구 목록' component={FriendsList} options={{
                 headerLeft: ({onPress}) => (
                     <TouchableOpacity onPress={onPress}>
                         <Icon style={styles.icon} name='arrow-left' size={25} color={Colors.white}/>

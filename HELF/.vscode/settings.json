@@ -1,4 +1,5 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "cmake.sourceDirectory": "/Users/seohojun/Desktop/Project/HF/HealthFriends/HELF/ios/Pods/Flipper-Boost-iOSX/boost/safe_numerics"
 }
