@@ -1,7 +1,11 @@
 package com.example.HealthFriends.service.impl;
 
 import com.example.HealthFriends.dto.*;
-import com.example.HealthFriends.entity.*;
+import com.example.HealthFriends.entity.ExRanking;
+import com.example.HealthFriends.entity.ExDailyRecord;
+import com.example.HealthFriends.entity.ExerciseRecord;
+import com.example.HealthFriends.entity.Exercise;
+import com.example.HealthFriends.entity.User;
 import com.example.HealthFriends.repository.JPAExerciseRepository;
 import com.example.HealthFriends.repository.JPAExerciseTypeRepository;
 import com.example.HealthFriends.repository.JPAUserRepository;
