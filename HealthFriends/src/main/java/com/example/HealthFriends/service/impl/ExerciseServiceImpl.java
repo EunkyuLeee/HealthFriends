@@ -1,10 +1,7 @@
 package com.example.HealthFriends.service.impl;
 
 import com.example.HealthFriends.dto.*;
-import com.example.HealthFriends.entity.ExRanking;
-import com.example.HealthFriends.entity.ExerciseRecord;
-import com.example.HealthFriends.entity.Exercise;
-import com.example.HealthFriends.entity.User;
+import com.example.HealthFriends.entity.*;
 import com.example.HealthFriends.repository.JPAExerciseRepository;
 import com.example.HealthFriends.repository.JPAExerciseTypeRepository;
 import com.example.HealthFriends.repository.JPAUserRepository;
@@ -16,7 +13,6 @@ import java.rmi.NoSuchObjectException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
@@ -252,7 +248,8 @@ public class ExerciseServiceImpl implements ExerciseService {
         Optional<Exercise> byId = jpaExerciseTypeRepository.findById(exNo);
         if (byId.isEmpty()) {
             throw new NoSuchObjectException("There is NO such exercise_no!!");
-        } else if (byId.get().getCBy() != 0L) {
+        }
+        if (jpaUserRepository.findById(byId.get().getCBy()).get().getRole() != Role.ADMIN) {
             throw new IllegalArgumentException("This exercise_no is NOT accessable!!");
         }
 
@@ -263,7 +260,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public Ranking getRankingByUserId(Long exNo, Long uid) throws NoSuchObjectException {
         Optional<User> byId = jpaUserRepository.findById(uid);
-        if (byId.isEmpty() || uid == 0L) {
+        if (byId.isEmpty()) {
             throw new NoSuchObjectException("There is NO such user_id!!");
         }
         Optional<Exercise> findById = jpaExerciseTypeRepository.findById(exNo);
